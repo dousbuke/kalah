@@ -55,11 +55,7 @@ public class PlayerMovement {
             opponent.getMainPit().setPit(opponent.getMainPit().getPit() + Utils.sum(opponent.pits));
             Utils.clearPits(opponent.pits);
         }
-
-        int total = homePlayer.getMainPit().getPit() + opponent.getMainPit().getPit() + Utils.sum(homePlayer.pits) + Utils.sum(opponent.pits);
-
-        System.out.println("total pit :" +  total);
-
+        
         return isLastStone;
     }
 
