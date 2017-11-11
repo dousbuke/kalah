@@ -1,12 +1,20 @@
 package db.kalah;
 
 
-import db.kalah.game.KalahPlay;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
-public class Application {
+@SpringBootApplication
+public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
-        new KalahPlay();
+        SpringApplication.run(Application.class, args);
     }
 
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        return builder.sources(Application.class);
+    }
 }
