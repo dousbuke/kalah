@@ -17,7 +17,6 @@ public class KalahPlay {
 
 
     public KalahPlay() {
-
         firstPlayerBoard = new Board(BOARD);
         secondPlayerBoard = new Board(BOARD);
 
@@ -28,7 +27,6 @@ public class KalahPlay {
         Paint.paint(firstPlayerBoard, secondPlayerBoard);
 
         do {
-
             if (currentPlayer == Players.FIRST_PLAYER) {
                 System.out.println("First Player turn");
                 isLastStone = PlayerPitSelection.playerPitSelection(firstPlayerBoard, secondPlayerBoard);
