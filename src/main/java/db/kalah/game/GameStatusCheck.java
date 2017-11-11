@@ -16,7 +16,7 @@ public class GameStatusCheck {
         if (firstPlayerBoardSum == 0 && secondPlayerBoardSum == 0) {
             if (firstPlayerBoard.getMainPit().getPit() > secondPlayerBoard.getMainPit().getPit()) {
                 return GameStatus.FIRST_PLAYER_WIN;
-            } else if (firstPlayerBoard.getMainPit().getPit() > secondPlayerBoard.getMainPit().getPit()) {
+            } else if (firstPlayerBoard.getMainPit().getPit() < secondPlayerBoard.getMainPit().getPit()) {
                 return GameStatus.SECOND_PLAYER_WIN;
             } else if (firstPlayerBoard.getMainPit().getPit() == secondPlayerBoard.getMainPit().getPit()) {
                 return GameStatus.DRAW;

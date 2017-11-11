@@ -55,7 +55,7 @@ public class PlayerMovement {
             opponent.getMainPit().setPit(opponent.getMainPit().getPit() + Utils.sum(opponent.pits));
             Utils.clearPits(opponent.pits);
         }
-        
+
         return isLastStone;
     }
 
