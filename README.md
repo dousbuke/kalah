@@ -8,11 +8,11 @@ For SpringBoot branch:
 # -- Post - game/init-board
 Sets the size of board;
 
-Request: BoardRequest 
+Request: BoardRequest </br>
 Integer boardSize;
 
-Response: BoardResponse
-Board firstPlayerBoard;
+Response: BoardResponse </br>
+Board firstPlayerBoard; </br>
 Board secondPlayerBoard;
 
 # -- Get - game/init
@@ -25,23 +25,23 @@ GameStatus.PLAYING
 Player movement. 
 
 Request : SelectPitRequest </br>
-Players players = Enum, FIRST_PLAYER or SECOND_PLAYER
-Integer pit = Selection of pit
-Board player = Home player board
-Board opponent = Opponent player board
+Players players = Enum, FIRST_PLAYER or SECOND_PLAYER </br>
+Integer pit = Selection of pit </br>
+Board player = Home player board </br>
+Board opponent = Opponent player board </br>
 
 
-Response : SelectPitResponse
-Board player = Home player board after movement
-Board opponent = Opponent board after movement
+Response : SelectPitResponse </br>
+Board player = Home player board after movement </br>
+Board opponent = Opponent board after movement </br>
 boolean lastStone = if the last stone remains on an emtpy pit, then return true so that player can take the opposite      stones. false if not, turn swaps to other player
 
 # -- Post - game/status-check
 Status check of game
 
-Request: GameStatusCheckRequest
+Request: GameStatusCheckRequest </br>
 Board firstPlayerBoard;
 Board secondPlayerBoard;
 
-Response: GameStatusCheckResponse
+Response: GameStatusCheckResponse </br>
 GameStatus: PLAYING, DRAW, FIRST_PLAYER_WIN, SECOND_PLAYER_WIN
