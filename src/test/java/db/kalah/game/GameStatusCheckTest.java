@@ -3,6 +3,8 @@ package db.kalah.game;
 import db.kalah.enums.GameStatus;
 import db.kalah.model.Board;
 import db.kalah.model.Pit;
+import db.kalah.model.PlayerBoards;
+import db.kalah.util.GameStatusCheck;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -39,7 +41,9 @@ public class GameStatusCheckTest {
         secondPlayerBoard.setMainPit(secondPlayerMainPit);
         secondPlayerBoard.setPits(pitList);
 
-        GameStatus status = GameStatusCheck.checkForGameStatus(firstPlayerBoard, secondPlayerBoard);
+        PlayerBoards playerBoards = new PlayerBoards(firstPlayerBoard, secondPlayerBoard);
+
+        GameStatus status = GameStatusCheck.checkGameStatusByPitNumber(playerBoards);
 
         assertThat(status, equalTo(GameStatus.FIRST_PLAYER_WIN));
     }
@@ -68,7 +72,9 @@ public class GameStatusCheckTest {
         secondPlayerBoard.setMainPit(secondPlayerMainPit);
         secondPlayerBoard.setPits(pitList);
 
-        GameStatus status = GameStatusCheck.checkForGameStatus(firstPlayerBoard, secondPlayerBoard);
+        PlayerBoards playerBoards = new PlayerBoards(firstPlayerBoard, secondPlayerBoard);
+
+        GameStatus status = GameStatusCheck.checkGameStatusByPitNumber(playerBoards);
 
         assertThat(status, equalTo(GameStatus.SECOND_PLAYER_WIN));
     }
@@ -97,7 +103,9 @@ public class GameStatusCheckTest {
         secondPlayerBoard.setMainPit(secondPlayerMainPit);
         secondPlayerBoard.setPits(pitList);
 
-        GameStatus status = GameStatusCheck.checkForGameStatus(firstPlayerBoard, secondPlayerBoard);
+        PlayerBoards playerBoards = new PlayerBoards(firstPlayerBoard, secondPlayerBoard);
+
+        GameStatus status = GameStatusCheck.checkGameStatusByPitNumber(playerBoards);
 
         assertThat(status, equalTo(GameStatus.DRAW));
     }
@@ -135,7 +143,9 @@ public class GameStatusCheckTest {
         secondPlayerBoard.setMainPit(secondPlayerMainPit);
         secondPlayerBoard.setPits(pitListP2);
 
-        GameStatus status = GameStatusCheck.checkForGameStatus(firstPlayerBoard, secondPlayerBoard);
+        PlayerBoards playerBoards = new PlayerBoards(firstPlayerBoard, secondPlayerBoard);
+
+        GameStatus status = GameStatusCheck.checkGameStatusByPitNumber(playerBoards);
 
         assertThat(status, equalTo(GameStatus.PLAYING));
     }

@@ -1,15 +1,13 @@
 package db.kalah.game;
 
 
-import db.kalah.model.Board;
-
 import java.util.Scanner;
 
 public class PlayerPitSelection {
 
     private static Scanner input = new Scanner(System.in);
 
-    public static boolean playerPitSelection(Board firstPlayer, Board secondPlayer) {
+    public static Integer playerPitSelection() {
         int pit = 0;
         boolean validInput = false;
 
@@ -29,7 +27,7 @@ public class PlayerPitSelection {
             }
         } while (!validInput);
 
-        return PlayerMovement.movement(pit, firstPlayer, secondPlayer);
+        return pit;
     }
 
 }

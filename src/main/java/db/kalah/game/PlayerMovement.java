@@ -1,17 +1,26 @@
 package db.kalah.game;
 
 import db.kalah.model.Board;
+import db.kalah.model.PlayerBoards;
 import db.kalah.util.Utils;
 
 
 public class PlayerMovement {
 
-    public static boolean movement(int pit, Board homePlayer, Board opponent) {
+    private Integer defaultPitSize;
+
+    public PlayerMovement(Integer defaultPitSize) {
+        this.defaultPitSize = defaultPitSize;
+    }
+
+    public boolean movement(int pit, PlayerBoards playerBoards) {
         int pitCount;
         int mainPit;
         int updatedPitCount;
         int currentPit;
         boolean isLastStone = false;
+        Board homePlayer = playerBoards.getFirstPlayerBoard();
+        Board opponent = playerBoards.getSecondPlayerBoard();
 
         pitCount = homePlayer.getPits().get(pit - 1).getPit();
         homePlayer.getPits().get(pit - 1).setPit(0);
@@ -19,11 +28,11 @@ public class PlayerMovement {
 
         for (int i = 0; i < pitCount; i++) {
 
-            if (pit == 6) {
+            if (pit == defaultPitSize) {
                 mainPit += 1;
                 homePlayer.getMainPit().setPit(mainPit);
                 isLastStone = (i == pitCount - 1) ? true : false;
-            } else if (pit < 6) {
+            } else if (pit < defaultPitSize) {
                 updatedPitCount = homePlayer.getPits().get(pit).getPit();
                 updatedPitCount += 1;
                 homePlayer.getPits().get(pit).setPit(updatedPitCount);
@@ -35,10 +44,10 @@ public class PlayerMovement {
                     homePlayer.getPits().get(pit).setPit(0);
                     opponent.getPits().get(opponentPit(pit) - 1).setPit(0);
                 }
-            } else if (pit > 6) {
+            } else if (pit > defaultPitSize) {
                 currentPit = pit - 7;
 
-                if (currentPit > 5) {
+                if (currentPit > defaultPitSize - 1) {
                     pit = -1;
                     i = i - 1;
                 } else {

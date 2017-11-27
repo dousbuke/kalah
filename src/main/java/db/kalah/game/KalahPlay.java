@@ -1,67 +1,71 @@
 package db.kalah.game;
 
-import db.kalah.config.GameSetUp;
 import db.kalah.enums.GameStatus;
 import db.kalah.enums.Players;
-import db.kalah.model.Board;
+import db.kalah.model.PlayerBoards;
+
+import static db.kalah.config.GameSetUp.initGame;
+import static db.kalah.game.PlayerPitSelection.playerPitSelection;
+import static db.kalah.util.GameStatusCheck.checkGameStatusByPitNumber;
+import static db.kalah.util.GameStatusCheck.checkGameStatusByWinner;
+import static db.kalah.util.GameTurnCheck.checkGameTurn;
 
 
 public class KalahPlay {
 
-    private static Integer BOARD = 6;
+    private PlayerBoards playerBoards;
+    private GameStatus gameStatus;
+    private Players currentPlayer;
+    private Paint board;
+    private boolean isLastStone;
+    private PlayerMovement firstPlayerMovement;
+    private PlayerMovement secondPlayerMovement;
 
-    public Board firstPlayerBoard;
-    public Board secondPlayerBoard;
-    public GameStatus gameStatus;
-    public Players currentPlayer;
+    public KalahPlay(Integer boardSize, Integer defaultPitSize) {
+        this.playerBoards = new PlayerBoards(boardSize);
+        this.currentPlayer = Players.FIRST_PLAYER;
+        this.board = new Paint(playerBoards.getFirstPlayerBoard(), playerBoards.getSecondPlayerBoard());
+        this.gameStatus = initGame();
+        this.isLastStone = false;
+        this.firstPlayerMovement = new PlayerMovement(defaultPitSize);
+        this.secondPlayerMovement = new PlayerMovement(defaultPitSize);
+    }
 
-
-    public KalahPlay() {
-        firstPlayerBoard = new Board(BOARD);
-        secondPlayerBoard = new Board(BOARD);
-
-        currentPlayer = Players.FIRST_PLAYER;
-        gameStatus = GameSetUp.initGame();
-        boolean isLastStone = false;
-
-        Paint.paint(firstPlayerBoard, secondPlayerBoard);
+    public void playGame() {
+        board.paint();
 
         do {
-            if (currentPlayer == Players.FIRST_PLAYER) {
-                System.out.println("First Player turn");
-                isLastStone = PlayerPitSelection.playerPitSelection(firstPlayerBoard, secondPlayerBoard);
-            } else if (currentPlayer == Players.SECOND_PLAYER) {
-                System.out.println("Second Player turn");
-                isLastStone = PlayerPitSelection.playerPitSelection(secondPlayerBoard, firstPlayerBoard);
-            }
+            playTurn();
 
-            Paint.paint(firstPlayerBoard, secondPlayerBoard);
+            board.paint();
 
-            gameStatus = GameStatusCheck.checkForGameStatus(firstPlayerBoard, secondPlayerBoard);
+            gameStatus = checkGameStatusByPitNumber(playerBoards);
 
-            if (gameStatus == GameStatus.FIRST_PLAYER_WIN) {
-                System.out.println("First Player won!");
-            } else if (gameStatus == GameStatus.SECOND_PLAYER_WIN) {
-                System.out.println("Second Player won!");
-            } else if (gameStatus == GameStatus.DRAW) {
-                System.out.println("It's a draw");
-            }
+            checkGameStatusByWinner(gameStatus);
 
-            if (currentPlayer == Players.FIRST_PLAYER) {
-                if (isLastStone) {
-                    currentPlayer = Players.FIRST_PLAYER;
-                } else {
-                    currentPlayer = Players.SECOND_PLAYER;
-                }
-            } else {
-                if (isLastStone) {
-                    currentPlayer = Players.SECOND_PLAYER;
-                } else {
-                    currentPlayer = Players.FIRST_PLAYER;
-                }
-            }
+            currentPlayer = checkGameTurn(currentPlayer, isLastStone);
 
         } while (gameStatus == GameStatus.PLAYING);
-
     }
+
+    private void playTurn() {
+        if (currentPlayer == Players.FIRST_PLAYER) {
+            printTurnMessage(currentPlayer);
+
+            Integer pit = playerPitSelection();
+
+            isLastStone = firstPlayerMovement.movement(pit, playerBoards);
+        } else if (currentPlayer == Players.SECOND_PLAYER) {
+            printTurnMessage(currentPlayer);
+
+            Integer pit = playerPitSelection();
+
+            isLastStone = secondPlayerMovement.movement(pit, playerBoards);
+        }
+    }
+
+    private void printTurnMessage(Players players) {
+        System.out.println(players.getPlayerName() + " turn");
+    }
+
 }

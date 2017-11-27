@@ -5,7 +5,16 @@ import db.kalah.model.Board;
 
 public class Paint {
 
-    public static void paint(Board firstPlayer, Board secondPlayer) {
+    private Board firstPlayer;
+
+    private Board secondPlayer;
+
+    public Paint(Board firstPlayer, Board secondPlayer) {
+        this.firstPlayer = firstPlayer;
+        this.secondPlayer = secondPlayer;
+    }
+
+    public void paint() {
 
         paintFirstPlayerBoard(firstPlayer);
 
@@ -23,7 +32,7 @@ public class Paint {
 
     }
 
-    private static void paintFirstPlayerBoard(Board playerBoard) {
+    private void paintFirstPlayerBoard(Board playerBoard) {
         System.out.print("------------First Player-------------\n");
         System.out.print(playerBoard.getMainPit().getPitName() + " | " );
         for (int i = 5; i >= 0; i--) {
@@ -38,7 +47,7 @@ public class Paint {
         }
     }
 
-    private static void paintSecondPlayerBoard(Board playerBoard) {
+    private void paintSecondPlayerBoard(Board playerBoard) {
         for (int i = 0; i < playerBoard.size; i++) {
             System.out.print(playerBoard.getPits().get(i).getPit() + "  | " );
         }
