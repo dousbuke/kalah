@@ -24,6 +24,11 @@ public class PlayerPitSelection {
                 validInput = checkForValidInput(pit);
                 validInput = validPit(board, pit);
             } catch (NumberFormatException e) {
+                e.getMessage();
+                e.printStackTrace();
+            } catch (GameException e) {
+                validInput = false;
+                e.getMessage();
                 e.printStackTrace();
             }
         } while (!validInput);
@@ -31,25 +36,28 @@ public class PlayerPitSelection {
         return pit;
     }
 
-    private static boolean checkForValidInput(int pit) {
-        if (pit > 6 || pit < 1) {
-            System.out.println("Selected pit is wrong. Please select pit");
-            return false;
-        } else {
+    private static boolean checkForValidInput(int pit) throws NumberFormatException {
+        try {
+            if (pit > 6 || pit < 1) {
+                throw new NumberFormatException("Pit is not valid. Try again");
+            }
             return true;
+        } catch (NumberFormatException e) {
+            throw e;
         }
     }
 
-    public static boolean validPit(Board board, Integer pit) {
+    public static boolean validPit(Board board, Integer pit) throws GameException {
         try {
             if (board.getPits().get(pit - 1).getPit() == 0) {
                 throw new GameException(GameError.EMPTY_PIT_CANNOT_PLAY);
             }
             return true;
         } catch (GameException exception) {
-            exception.printStackTrace();
+            exception.getLocalizedMessage();
+
+            throw exception;
         }
-        return false;
     }
 
 }

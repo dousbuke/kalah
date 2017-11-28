@@ -12,11 +12,6 @@ public class GameException extends RuntimeException {
 
     private Throwable throwable;
 
-    public GameException(String message, GameError gameError) {
-        super(gameError.getErrorMessage());
-        this.gameError = gameError;
-    }
-
     public GameException(GameError gameError) {
         super(gameError.getErrorMessage());
         this.gameError = gameError;
