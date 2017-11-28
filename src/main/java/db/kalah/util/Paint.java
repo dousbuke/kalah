@@ -1,4 +1,4 @@
-package db.kalah.game;
+package db.kalah.util;
 
 import db.kalah.model.Board;
 

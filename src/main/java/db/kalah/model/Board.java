@@ -1,5 +1,6 @@
 package db.kalah.model;
 
+import db.kalah.util.Utils;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,6 +29,10 @@ public class Board {
             this.pits.add(i, pit);
         }
         mainPit = new Pit("Main", 0);
+    }
+
+    public boolean isBoardEmpty() {
+        return Utils.sum(pits) == 0;
     }
 
 }

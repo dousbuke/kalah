@@ -14,10 +14,13 @@ public class GameStatusCheck {
 
         if (firstPlayerBoardSum == 0 && secondPlayerBoardSum == 0) {
             if (playerBoards.getFirstPlayerBoard().getMainPit().getPit() > playerBoards.getSecondPlayerBoard().getMainPit().getPit()) {
+                gameStatusMessage(GameStatus.FIRST_PLAYER_WIN);
                 return GameStatus.FIRST_PLAYER_WIN;
             } else if (playerBoards.getFirstPlayerBoard().getMainPit().getPit() < playerBoards.getSecondPlayerBoard().getMainPit().getPit()) {
+                gameStatusMessage(GameStatus.SECOND_PLAYER_WIN);
                 return GameStatus.SECOND_PLAYER_WIN;
             } else if (playerBoards.getFirstPlayerBoard().getMainPit().getPit() == playerBoards.getSecondPlayerBoard().getMainPit().getPit()) {
+                gameStatusMessage(GameStatus.DRAW);
                 return GameStatus.DRAW;
             }
         }
@@ -25,13 +28,12 @@ public class GameStatusCheck {
         return GameStatus.PLAYING;
     }
 
-    public static void checkGameStatusByWinner(GameStatus gameStatus) {
-        if (gameStatus == GameStatus.FIRST_PLAYER_WIN) {
-            System.out.println("First Player won!");
-        } else if (gameStatus == GameStatus.SECOND_PLAYER_WIN) {
-            System.out.println("Second Player won!");
-        } else if (gameStatus == GameStatus.DRAW) {
+    private static void gameStatusMessage(GameStatus gameStatus) {
+        if (GameStatus.DRAW.equals(gameStatus)) {
             System.out.println("It's a draw");
+        } else {
+            System.out.println(gameStatus.getGameStatusName() + " won!");
         }
     }
+
 }

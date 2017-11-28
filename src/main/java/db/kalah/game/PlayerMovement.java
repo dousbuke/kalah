@@ -1,5 +1,6 @@
 package db.kalah.game;
 
+import db.kalah.enums.Players;
 import db.kalah.model.Board;
 import db.kalah.model.PlayerBoards;
 import db.kalah.util.Utils;
@@ -7,48 +8,56 @@ import db.kalah.util.Utils;
 
 public class PlayerMovement {
 
-    private Integer defaultPitSize;
+    private Integer pitCount;
 
-    public PlayerMovement(Integer defaultPitSize) {
-        this.defaultPitSize = defaultPitSize;
+    public PlayerMovement(Integer pitCount) {
+        this.pitCount = pitCount;
     }
 
-    public boolean movement(int pit, PlayerBoards playerBoards) {
+    public boolean movement(int selectedPit, PlayerBoards playerBoards, Players currentPlayer) {
         int pitCount;
         int mainPit;
         int updatedPitCount;
         int currentPit;
         boolean isLastStone = false;
-        Board homePlayer = playerBoards.getFirstPlayerBoard();
-        Board opponent = playerBoards.getSecondPlayerBoard();
+        Board homePlayer;
+        Board opponent;
 
-        pitCount = homePlayer.getPits().get(pit - 1).getPit();
-        homePlayer.getPits().get(pit - 1).setPit(0);
+        if (currentPlayer.equals(Players.FIRST_PLAYER)) {
+            homePlayer = playerBoards.getFirstPlayerBoard();
+            opponent = playerBoards.getSecondPlayerBoard();
+        } else {
+            homePlayer = playerBoards.getSecondPlayerBoard();
+            opponent = playerBoards.getFirstPlayerBoard();
+        }
+
+        pitCount = homePlayer.getPits().get(selectedPit - 1).getPit();
+        homePlayer.getPits().get(selectedPit - 1).setPit(0);
         mainPit = homePlayer.getMainPit().getPit();
 
         for (int i = 0; i < pitCount; i++) {
 
-            if (pit == defaultPitSize) {
+            if (selectedPit == this.pitCount) {
                 mainPit += 1;
                 homePlayer.getMainPit().setPit(mainPit);
                 isLastStone = (i == pitCount - 1) ? true : false;
-            } else if (pit < defaultPitSize) {
-                updatedPitCount = homePlayer.getPits().get(pit).getPit();
+            } else if (selectedPit < this.pitCount) {
+                updatedPitCount = homePlayer.getPits().get(selectedPit).getPit();
                 updatedPitCount += 1;
-                homePlayer.getPits().get(pit).setPit(updatedPitCount);
+                homePlayer.getPits().get(selectedPit).setPit(updatedPitCount);
 
                 // last sown lands on empty pit then collect home and opponent
                 if (i == pitCount - 1 && updatedPitCount == 1) {
-                    mainPit = mainPit + homePlayer.getPits().get(pit).getPit() + opponent.getPits().get(opponentPit(pit) - 1).getPit();
+                    mainPit = mainPit + homePlayer.getPits().get(selectedPit).getPit() + opponent.getPits().get(opponentPitMap(selectedPit) - 1).getPit();
                     homePlayer.getMainPit().setPit(mainPit);
-                    homePlayer.getPits().get(pit).setPit(0);
-                    opponent.getPits().get(opponentPit(pit) - 1).setPit(0);
+                    homePlayer.getPits().get(selectedPit).setPit(0);
+                    opponent.getPits().get(opponentPitMap(selectedPit) - 1).setPit(0);
                 }
-            } else if (pit > defaultPitSize) {
-                currentPit = pit - 7;
+            } else if (selectedPit > this.pitCount) {
+                currentPit = selectedPit - 7;
 
-                if (currentPit > defaultPitSize - 1) {
-                    pit = -1;
+                if (currentPit > this.pitCount - 1) {
+                    selectedPit = -1;
                     i = i - 1;
                 } else {
                     updatedPitCount = opponent.getPits().get(currentPit).getPit();
@@ -57,10 +66,10 @@ public class PlayerMovement {
                 }
             }
 
-            pit++;
+            selectedPit++;
         }
 
-        if (isBoardEmpty(homePlayer)) {
+        if (homePlayer.isBoardEmpty()) {
             opponent.getMainPit().setPit(opponent.getMainPit().getPit() + Utils.sum(opponent.pits));
             Utils.clearPits(opponent.pits);
         }
@@ -68,11 +77,8 @@ public class PlayerMovement {
         return isLastStone;
     }
 
-    private static boolean isBoardEmpty(Board homePlayer) {
-        return Utils.sum(homePlayer.pits) == 0;
-    }
-
-    private static int opponentPit(int pit) {
+    //Todo make util
+    private static int opponentPitMap(int pit) {
         int opposite = 0;
         switch (pit) {
             case 1:

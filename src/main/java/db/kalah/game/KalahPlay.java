@@ -3,11 +3,11 @@ package db.kalah.game;
 import db.kalah.enums.GameStatus;
 import db.kalah.enums.Players;
 import db.kalah.model.PlayerBoards;
+import db.kalah.util.Paint;
 
 import static db.kalah.config.GameSetUp.initGame;
 import static db.kalah.game.PlayerPitSelection.playerPitSelection;
 import static db.kalah.util.GameStatusCheck.checkGameStatusByPitNumber;
-import static db.kalah.util.GameStatusCheck.checkGameStatusByWinner;
 import static db.kalah.util.GameTurnCheck.checkGameTurn;
 
 
@@ -21,8 +21,8 @@ public class KalahPlay {
     private PlayerMovement firstPlayerMovement;
     private PlayerMovement secondPlayerMovement;
 
-    public KalahPlay(Integer boardSize, Integer defaultPitSize) {
-        this.playerBoards = new PlayerBoards(boardSize);
+    public KalahPlay(Integer pitCount, Integer defaultPitSize) {
+        this.playerBoards = new PlayerBoards(pitCount);
         this.currentPlayer = Players.FIRST_PLAYER;
         this.board = new Paint(playerBoards.getFirstPlayerBoard(), playerBoards.getSecondPlayerBoard());
         this.gameStatus = initGame();
@@ -41,8 +41,6 @@ public class KalahPlay {
 
             gameStatus = checkGameStatusByPitNumber(playerBoards);
 
-            checkGameStatusByWinner(gameStatus);
-
             currentPlayer = checkGameTurn(currentPlayer, isLastStone);
 
         } while (gameStatus == GameStatus.PLAYING);
@@ -52,15 +50,15 @@ public class KalahPlay {
         if (currentPlayer == Players.FIRST_PLAYER) {
             printTurnMessage(currentPlayer);
 
-            Integer pit = playerPitSelection();
+            Integer selectedPit = playerPitSelection();
 
-            isLastStone = firstPlayerMovement.movement(pit, playerBoards);
+            isLastStone = firstPlayerMovement.movement(selectedPit, playerBoards, currentPlayer);
         } else if (currentPlayer == Players.SECOND_PLAYER) {
             printTurnMessage(currentPlayer);
 
             Integer pit = playerPitSelection();
 
-            isLastStone = secondPlayerMovement.movement(pit, playerBoards);
+            isLastStone = secondPlayerMovement.movement(pit, playerBoards, currentPlayer);
         }
     }
 
