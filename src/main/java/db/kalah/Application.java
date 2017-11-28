@@ -1,7 +1,7 @@
 package db.kalah;
 
 
-import db.kalah.game.KalahPlay;
+import db.kalah.game.PlayGame;
 
 public class Application {
 
@@ -9,8 +9,8 @@ public class Application {
         Integer pitCount = 6;
         Integer defaultPitSize = 6;
 
-        KalahPlay kalahPlay = new KalahPlay(pitCount, defaultPitSize);
-        kalahPlay.playGame();
+        PlayGame playGame = new PlayGame(pitCount, defaultPitSize);
+        playGame.playGame();
     }
 
 }

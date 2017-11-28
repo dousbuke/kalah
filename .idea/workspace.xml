@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1ad76c5-216c-4ee8-9720-488fc19c1988" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/db/kalah/game/Paint.java" afterPath="$PROJECT_DIR$/src/main/java/db/kalah/util/Paint.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/db/kalah/Application.java" afterPath="$PROJECT_DIR$/src/main/java/db/kalah/Application.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/db/kalah/enums/GameStatus.java" afterPath="$PROJECT_DIR$/src/main/java/db/kalah/enums/GameStatus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/db/kalah/game/KalahPlay.java" afterPath="$PROJECT_DIR$/src/main/java/db/kalah/game/KalahPlay.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/db/kalah/game/PlayerMovement.java" afterPath="$PROJECT_DIR$/src/main/java/db/kalah/game/PlayerMovement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/db/kalah/model/Board.java" afterPath="$PROJECT_DIR$/src/main/java/db/kalah/model/Board.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/db/kalah/util/GameStatusCheck.java" afterPath="$PROJECT_DIR$/src/main/java/db/kalah/util/GameStatusCheck.java" />
-    </list>
+    <list default="true" id="a1ad76c5-216c-4ee8-9720-488fc19c1988" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -60,10 +51,10 @@
       <file leaf-file-name="PlayerMovement.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/db/kalah/game/PlayerMovement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-176">
-              <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+            <state relative-caret-position="-639">
+              <caret line="33" column="19" lean-forward="true" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="70" />
               <folding>
-                <marker date="1511829436000" expanded="true" signature="2883:2891" ph="{...}" />
+                <marker date="1511829823000" expanded="true" signature="2875:2883" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -82,7 +73,7 @@
       <file leaf-file-name="KalahPlay.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/db/kalah/game/KalahPlay.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="622">
+            <state relative-caret-position="606">
               <caret line="54" column="52" lean-forward="false" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -104,8 +95,8 @@
       <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/db/kalah/model/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="34" column="23" lean-forward="true" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+            <state relative-caret-position="394">
+              <caret line="34" column="23" lean-forward="false" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
               <folding>
                 <element signature="e#689#690#0" expanded="true" />
                 <element signature="e#732#733#0" expanded="true" />
@@ -117,8 +108,8 @@
       <file leaf-file-name="Utils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/db/kalah/util/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+            <state relative-caret-position="136">
+              <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -183,8 +174,8 @@
         <option value="$PROJECT_DIR$/src/main/java/db/kalah/util/GameStatusCheck.java" />
         <option value="$PROJECT_DIR$/src/main/java/db/kalah/enums/GameStatus.java" />
         <option value="$PROJECT_DIR$/src/main/java/db/kalah/game/KalahPlay.java" />
-        <option value="$PROJECT_DIR$/src/main/java/db/kalah/game/PlayerMovement.java" />
         <option value="$PROJECT_DIR$/src/main/java/db/kalah/model/Board.java" />
+        <option value="$PROJECT_DIR$/src/main/java/db/kalah/game/PlayerMovement.java" />
       </list>
     </option>
   </component>
@@ -1754,7 +1745,7 @@
       <workItem from="1510398906003" duration="2126000" />
       <workItem from="1510405469818" duration="1284000" />
       <workItem from="1511826728579" duration="899000" />
-      <workItem from="1511828706030" duration="903000" />
+      <workItem from="1511828706030" duration="1131000" />
     </task>
     <servers />
   </component>
@@ -1791,11 +1782,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45926000" />
+    <option name="totallyTimeSpent" value="46154000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1817,7 +1807,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32244897" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32959184" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26190478" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1859,8 +1849,20 @@
           <properties />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/db/kalah/model/Board.java</url>
+          <line>34</line>
+          <properties />
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/db/kalah/util/Utils.java</url>
+          <line>10</line>
+          <properties />
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="26" />
+      <option name="time" value="28" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1924,7 +1926,7 @@
         <state relative-caret-position="340">
           <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding>
-            <marker date="1511829436000" expanded="true" signature="2883:2891" ph="{...}" />
+            <marker date="1511829823000" expanded="true" signature="2875:2883" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2231,16 +2233,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/db/kalah/util/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+        <state relative-caret-position="136">
+          <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/db/kalah/model/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="34" column="23" lean-forward="true" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+        <state relative-caret-position="394">
+          <caret line="34" column="23" lean-forward="false" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
           <folding>
             <element signature="e#689#690#0" expanded="true" />
             <element signature="e#732#733#0" expanded="true" />
@@ -2250,7 +2252,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/db/kalah/game/KalahPlay.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
+        <state relative-caret-position="606">
           <caret line="54" column="52" lean-forward="false" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -2260,10 +2262,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/db/kalah/game/PlayerMovement.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-176">
-          <caret line="16" column="19" lean-forward="false" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+        <state relative-caret-position="-639">
+          <caret line="33" column="19" lean-forward="true" selection-start-line="33" selection-start-column="19" selection-end-line="33" selection-end-column="70" />
           <folding>
-            <marker date="1511829436000" expanded="true" signature="2883:2891" ph="{...}" />
+            <marker date="1511829823000" expanded="true" signature="2875:2883" ph="{...}" />
           </folding>
         </state>
       </provider>

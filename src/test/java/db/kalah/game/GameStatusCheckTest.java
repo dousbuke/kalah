@@ -4,7 +4,7 @@ import db.kalah.enums.GameStatus;
 import db.kalah.model.Board;
 import db.kalah.model.Pit;
 import db.kalah.model.PlayerBoards;
-import db.kalah.util.GameStatusCheck;
+import db.kalah.gamestatus.GameStatusCheck;
 import org.junit.Test;
 
 import java.util.ArrayList;

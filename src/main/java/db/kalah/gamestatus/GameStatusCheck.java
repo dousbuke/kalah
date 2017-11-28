@@ -1,8 +1,11 @@
-package db.kalah.util;
+package db.kalah.gamestatus;
 
 
 import db.kalah.enums.GameStatus;
 import db.kalah.model.PlayerBoards;
+import db.kalah.util.Utils;
+
+import static db.kalah.util.Messages.gameStatusMessage;
 
 public class GameStatusCheck {
 
@@ -28,12 +31,6 @@ public class GameStatusCheck {
         return GameStatus.PLAYING;
     }
 
-    private static void gameStatusMessage(GameStatus gameStatus) {
-        if (GameStatus.DRAW.equals(gameStatus)) {
-            System.out.println("It's a draw");
-        } else {
-            System.out.println(gameStatus.getGameStatusName() + " won!");
-        }
-    }
+
 
 }

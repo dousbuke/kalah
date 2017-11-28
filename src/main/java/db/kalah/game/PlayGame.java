@@ -7,11 +7,12 @@ import db.kalah.util.Paint;
 
 import static db.kalah.config.GameSetUp.initGame;
 import static db.kalah.game.PlayerPitSelection.playerPitSelection;
-import static db.kalah.util.GameStatusCheck.checkGameStatusByPitNumber;
-import static db.kalah.util.GameTurnCheck.checkGameTurn;
+import static db.kalah.gamestatus.GameStatusCheck.checkGameStatusByPitNumber;
+import static db.kalah.gamestatus.GameTurnCheck.checkGameTurn;
+import static db.kalah.util.Messages.printTurnMessage;
 
 
-public class KalahPlay {
+public class PlayGame {
 
     private PlayerBoards playerBoards;
     private GameStatus gameStatus;
@@ -21,7 +22,7 @@ public class KalahPlay {
     private PlayerMovement firstPlayerMovement;
     private PlayerMovement secondPlayerMovement;
 
-    public KalahPlay(Integer pitCount, Integer defaultPitSize) {
+    public PlayGame(Integer pitCount, Integer defaultPitSize) {
         this.playerBoards = new PlayerBoards(pitCount);
         this.currentPlayer = Players.FIRST_PLAYER;
         this.board = new Paint(playerBoards.getFirstPlayerBoard(), playerBoards.getSecondPlayerBoard());
@@ -60,10 +61,6 @@ public class KalahPlay {
 
             isLastStone = secondPlayerMovement.movement(pit, playerBoards, currentPlayer);
         }
-    }
-
-    private void printTurnMessage(Players players) {
-        System.out.println(players.getPlayerName() + " turn");
     }
 
 }
