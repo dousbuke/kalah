@@ -25,4 +25,33 @@ public class Utils {
             list.get(i).setPit(0);
         }
     }
+
+    public static int opponentPitMap(int pit) {
+        int opposite = 0;
+        switch (pit) {
+            case 1:
+                opposite = 5;
+                break;
+            case 2:
+                opposite = 4;
+                break;
+            case 3:
+                opposite = 3;
+                break;
+            case 4:
+                opposite = 2;
+                break;
+            case 5:
+                opposite = 1;
+                break;
+            case 6:
+                opposite = 1;
+                break;
+            default:
+                assert false : "invalid pit " + pit;
+                break;
+        }
+
+        return opposite;
+    }
 }

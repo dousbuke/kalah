@@ -35,12 +35,14 @@ public class PlayerMovement {
         homePlayer.getPits().get(selectedPit - 1).setPit(0);
         mainPit = homePlayer.getMainPit().getPit();
 
+        //todo throw exceptopn if selected pit is 0
+
         for (int i = 0; i < pitCount; i++) {
 
             if (selectedPit == this.pitCount) {
                 mainPit += 1;
                 homePlayer.getMainPit().setPit(mainPit);
-                isLastStone = (i == pitCount - 1) ? true : false;
+                isLastStone = (i == pitCount - 1);
             } else if (selectedPit < this.pitCount) {
                 updatedPitCount = homePlayer.getPits().get(selectedPit).getPit();
                 updatedPitCount += 1;
@@ -48,10 +50,10 @@ public class PlayerMovement {
 
                 // last sown lands on empty pit then collect home and opponent
                 if (i == pitCount - 1 && updatedPitCount == 1) {
-                    mainPit = mainPit + homePlayer.getPits().get(selectedPit).getPit() + opponent.getPits().get(opponentPitMap(selectedPit) - 1).getPit();
+                    mainPit = mainPit + homePlayer.getPits().get(selectedPit).getPit() + opponent.getPits().get(Utils.opponentPitMap(selectedPit) - 1).getPit();
                     homePlayer.getMainPit().setPit(mainPit);
                     homePlayer.getPits().get(selectedPit).setPit(0);
-                    opponent.getPits().get(opponentPitMap(selectedPit) - 1).setPit(0);
+                    opponent.getPits().get(Utils.opponentPitMap(selectedPit) - 1).setPit(0);
                 }
             } else if (selectedPit > this.pitCount) {
                 currentPit = selectedPit - 7;
@@ -77,33 +79,4 @@ public class PlayerMovement {
         return isLastStone;
     }
 
-    //Todo make util
-    private static int opponentPitMap(int pit) {
-        int opposite = 0;
-        switch (pit) {
-            case 1:
-                opposite = 5;
-                break;
-            case 2:
-                opposite = 4;
-                break;
-            case 3:
-                opposite = 3;
-                break;
-            case 4:
-                opposite = 2;
-                break;
-            case 5:
-                opposite = 1;
-                break;
-            case 6:
-                opposite = 1;
-                break;
-            default:
-                assert false : "invalid pit " + pit;
-                break;
-        }
-
-        return opposite;
-    }
 }
