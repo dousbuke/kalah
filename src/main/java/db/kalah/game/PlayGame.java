@@ -1,16 +1,21 @@
 package db.kalah.game;
 
+import db.kalah.engine.GameEngine;
 import db.kalah.enums.GameStatus;
 import db.kalah.enums.Players;
-import db.kalah.engine.GameEngine;
 import db.kalah.model.PlayerBoards;
+import db.kalah.model.db.GameTable;
+import db.kalah.repository.GameTableRepository;
 import db.kalah.util.Paint;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.time.LocalDateTime;
 
 import static db.kalah.config.GameSetUp.initGame;
-import static db.kalah.util.PitSelection.playerPitSelection;
 import static db.kalah.status.GameStatusCheck.checkGameStatusByPitNumber;
 import static db.kalah.status.GameTurnCheck.checkGameTurn;
 import static db.kalah.util.Messages.printTurnMessage;
+import static db.kalah.util.PitSelection.playerPitSelection;
 
 
 public class PlayGame {
@@ -21,6 +26,9 @@ public class PlayGame {
     private Paint board;
     private GameEngine firstPlayerGameEngine;
     private GameEngine secondPlayerGameEngine;
+
+    @Autowired
+    private GameTableRepository gameTableRepository;
 
     public PlayGame(Integer pitCount, Integer defaultPitSize) {
         this.playerBoards = new PlayerBoards(pitCount);
@@ -56,6 +64,14 @@ public class PlayGame {
             Integer selectedPit = playerPitSelection(playerBoards.getFirstPlayerBoard());
 
             firstPlayerGameEngine.movement(selectedPit, playerBoards, currentPlayer);
+
+            GameTable gameTable = new GameTable();
+            gameTable.setId("Game"+ Math.random());
+            gameTable.setDateTime(LocalDateTime.now());
+            gameTable.setFirstPlayerBoard(playerBoards.getFirstPlayerBoard());
+            gameTable.setSecondPlayerBoard(playerBoards.getSecondPlayerBoard());
+
+            gameTableRepository.insert(gameTable);
         } else if (currentPlayer == Players.SECOND_PLAYER) {
             printTurnMessage(currentPlayer);
 
