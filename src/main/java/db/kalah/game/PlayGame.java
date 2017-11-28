@@ -18,7 +18,6 @@ public class PlayGame {
     private GameStatus gameStatus;
     private Players currentPlayer;
     private Paint board;
-    private boolean isLastStone;
     private PlayerMovement firstPlayerMovement;
     private PlayerMovement secondPlayerMovement;
 
@@ -27,7 +26,6 @@ public class PlayGame {
         this.currentPlayer = Players.FIRST_PLAYER;
         this.board = new Paint(playerBoards.getFirstPlayerBoard(), playerBoards.getSecondPlayerBoard());
         this.gameStatus = initGame();
-        this.isLastStone = false;
         this.firstPlayerMovement = new PlayerMovement(defaultPitSize);
         this.secondPlayerMovement = new PlayerMovement(defaultPitSize);
     }
@@ -41,8 +39,11 @@ public class PlayGame {
             board.paint();
 
             gameStatus = checkGameStatusByPitNumber(playerBoards);
-
-            currentPlayer = checkGameTurn(currentPlayer, isLastStone);
+            if (currentPlayer == Players.FIRST_PLAYER) {
+                currentPlayer = checkGameTurn(currentPlayer, firstPlayerMovement.isLastStone);
+            } else {
+                currentPlayer = checkGameTurn(currentPlayer, secondPlayerMovement.isLastStone);
+            }
 
         } while (gameStatus == GameStatus.PLAYING);
     }
@@ -51,15 +52,15 @@ public class PlayGame {
         if (currentPlayer == Players.FIRST_PLAYER) {
             printTurnMessage(currentPlayer);
 
-            Integer selectedPit = playerPitSelection();
+            Integer selectedPit = playerPitSelection(playerBoards.getFirstPlayerBoard());
 
-            isLastStone = firstPlayerMovement.movement(selectedPit, playerBoards, currentPlayer);
+            firstPlayerMovement.movement(selectedPit, playerBoards, currentPlayer);
         } else if (currentPlayer == Players.SECOND_PLAYER) {
             printTurnMessage(currentPlayer);
 
-            Integer pit = playerPitSelection();
+            Integer pit = playerPitSelection(playerBoards.getSecondPlayerBoard());
 
-            isLastStone = secondPlayerMovement.movement(pit, playerBoards, currentPlayer);
+            secondPlayerMovement.movement(pit, playerBoards, currentPlayer);
         }
     }
 
