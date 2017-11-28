@@ -1,25 +1,32 @@
 package db.kalah.game;
 
 import db.kalah.enums.Players;
+import db.kalah.exceptions.GameError;
+import db.kalah.exceptions.GameException;
 import db.kalah.model.Board;
 import db.kalah.model.PlayerBoards;
 import db.kalah.util.Utils;
+
+import java.util.logging.Logger;
 
 
 public class PlayerMovement {
 
     private Integer pitCount;
 
+    private Logger logger;
+
     public PlayerMovement(Integer pitCount) {
         this.pitCount = pitCount;
     }
 
-    public boolean movement(int selectedPit, PlayerBoards playerBoards, Players currentPlayer) {
+    public boolean movement(int selectedPit, PlayerBoards playerBoards, Players currentPlayer) throws GameException {
         int pitCount;
         int mainPit;
         int updatedPitCount;
         int currentPit;
         boolean isLastStone = false;
+        boolean validInput = false;
         Board homePlayer;
         Board opponent;
 
@@ -32,48 +39,56 @@ public class PlayerMovement {
         }
 
         pitCount = homePlayer.getPits().get(selectedPit - 1).getPit();
-        homePlayer.getPits().get(selectedPit - 1).setPit(0);
-        mainPit = homePlayer.getMainPit().getPit();
 
-        //todo throw exceptopn if selected pit is 0
+        try {
+            if (pitCount == 0) {
+                throw new GameException(GameError.EMPTY_PIT_CANNOT_PLAY);
+            } else {
+                homePlayer.getPits().get(selectedPit - 1).setPit(0);
+                mainPit = homePlayer.getMainPit().getPit();
 
-        for (int i = 0; i < pitCount; i++) {
+                for (int i = 0; i < pitCount; i++) {
 
-            if (selectedPit == this.pitCount) {
-                mainPit += 1;
-                homePlayer.getMainPit().setPit(mainPit);
-                isLastStone = (i == pitCount - 1);
-            } else if (selectedPit < this.pitCount) {
-                updatedPitCount = homePlayer.getPits().get(selectedPit).getPit();
-                updatedPitCount += 1;
-                homePlayer.getPits().get(selectedPit).setPit(updatedPitCount);
+                    if (selectedPit == this.pitCount) {
+                        mainPit += 1;
+                        homePlayer.getMainPit().setPit(mainPit);
+                        isLastStone = (i == pitCount - 1);
+                    } else if (selectedPit < this.pitCount) {
+                        updatedPitCount = homePlayer.getPits().get(selectedPit).getPit();
+                        updatedPitCount += 1;
+                        homePlayer.getPits().get(selectedPit).setPit(updatedPitCount);
 
-                // last sown lands on empty pit then collect home and opponent
-                if (i == pitCount - 1 && updatedPitCount == 1) {
-                    mainPit = mainPit + homePlayer.getPits().get(selectedPit).getPit() + opponent.getPits().get(Utils.opponentPitMap(selectedPit) - 1).getPit();
-                    homePlayer.getMainPit().setPit(mainPit);
-                    homePlayer.getPits().get(selectedPit).setPit(0);
-                    opponent.getPits().get(Utils.opponentPitMap(selectedPit) - 1).setPit(0);
+                        // last sown lands on empty pit then collect home and opponent
+                        if (i == pitCount - 1 && updatedPitCount == 1) {
+                            mainPit = mainPit + homePlayer.getPits().get(selectedPit).getPit() + opponent.getPits().get(Utils.opponentPitMap(selectedPit) - 1).getPit();
+                            homePlayer.getMainPit().setPit(mainPit);
+                            homePlayer.getPits().get(selectedPit).setPit(0);
+                            opponent.getPits().get(Utils.opponentPitMap(selectedPit) - 1).setPit(0);
+                        }
+                    } else if (selectedPit > this.pitCount) {
+                        currentPit = selectedPit - 7;
+
+                        if (currentPit > this.pitCount - 1) {
+                            selectedPit = -1;
+                            i = i - 1;
+                        } else {
+                            updatedPitCount = opponent.getPits().get(currentPit).getPit();
+                            updatedPitCount += 1;
+                            opponent.getPits().get(currentPit).setPit(updatedPitCount);
+                        }
+                    }
+
+                    selectedPit++;
                 }
-            } else if (selectedPit > this.pitCount) {
-                currentPit = selectedPit - 7;
 
-                if (currentPit > this.pitCount - 1) {
-                    selectedPit = -1;
-                    i = i - 1;
-                } else {
-                    updatedPitCount = opponent.getPits().get(currentPit).getPit();
-                    updatedPitCount += 1;
-                    opponent.getPits().get(currentPit).setPit(updatedPitCount);
+                if (homePlayer.isBoardEmpty()) {
+                    opponent.getMainPit().setPit(opponent.getMainPit().getPit() + Utils.sum(opponent.pits));
+                    Utils.clearPits(opponent.pits);
                 }
+
             }
-
-            selectedPit++;
-        }
-
-        if (homePlayer.isBoardEmpty()) {
-            opponent.getMainPit().setPit(opponent.getMainPit().getPit() + Utils.sum(opponent.pits));
-            Utils.clearPits(opponent.pits);
+        } catch (GameException e) {
+            e.printStackTrace();
         }
 
         return isLastStone;
