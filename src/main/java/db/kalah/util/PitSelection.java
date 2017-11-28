@@ -1,4 +1,4 @@
-package db.kalah.game;
+package db.kalah.util;
 
 
 import db.kalah.exceptions.GameError;
@@ -7,7 +7,7 @@ import db.kalah.model.Board;
 
 import java.util.Scanner;
 
-public class PlayerPitSelection {
+public class PitSelection {
 
     private static Scanner input = new Scanner(System.in);
 

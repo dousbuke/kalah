@@ -1,7 +1,7 @@
 package db.kalah;
 
 
-import db.kalah.game.PlayGame;
+import db.kalah.controller.PlayGame;
 
 public class Application {
 

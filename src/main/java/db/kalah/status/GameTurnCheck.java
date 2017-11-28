@@ -1,4 +1,4 @@
-package db.kalah.gamestatus;
+package db.kalah.status;
 
 
 import db.kalah.enums.Players;

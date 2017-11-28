@@ -1,4 +1,4 @@
-package db.kalah.game;
+package db.kalah.engine;
 
 import db.kalah.enums.Players;
 import db.kalah.model.Board;
@@ -6,12 +6,12 @@ import db.kalah.model.PlayerBoards;
 import db.kalah.util.Utils;
 
 
-public class PlayerMovement {
+public class GameEngine {
 
     private Integer pitCount;
     public boolean isLastStone;
 
-    public PlayerMovement(Integer pitCount) {
+    public GameEngine(Integer pitCount) {
         this.pitCount = pitCount;
         this.isLastStone = false;
     }
@@ -34,7 +34,6 @@ public class PlayerMovement {
         }
 
         pitCount = homePlayer.getPits().get(selectedPit - 1).getPit();
-
         homePlayer.getPits().get(selectedPit - 1).setPit(0);
         mainPit = homePlayer.getMainPit().getPit();
 
@@ -76,9 +75,7 @@ public class PlayerMovement {
             opponent.getMainPit().setPit(opponent.getMainPit().getPit() + Utils.sum(opponent.pits));
             Utils.clearPits(opponent.pits);
         }
-
     }
-
 
 }
 
