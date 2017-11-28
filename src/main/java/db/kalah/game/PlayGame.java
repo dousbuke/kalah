@@ -1,4 +1,4 @@
-package db.kalah.controller;
+package db.kalah.game;
 
 import db.kalah.enums.GameStatus;
 import db.kalah.enums.Players;
