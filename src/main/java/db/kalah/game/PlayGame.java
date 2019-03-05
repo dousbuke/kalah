@@ -4,12 +4,9 @@ import db.kalah.engine.GameEngine;
 import db.kalah.enums.GameStatus;
 import db.kalah.enums.Players;
 import db.kalah.model.PlayerBoards;
-import db.kalah.model.db.GameTable;
 import db.kalah.repository.GameTableRepository;
 import db.kalah.util.Paint;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.time.LocalDateTime;
 
 import static db.kalah.config.GameSetUp.initGame;
 import static db.kalah.status.GameStatusCheck.checkGameStatusByPitNumber;
@@ -64,14 +61,6 @@ public class PlayGame {
             Integer selectedPit = playerPitSelection(playerBoards.getFirstPlayerBoard());
 
             firstPlayerGameEngine.movement(selectedPit, playerBoards, currentPlayer);
-
-            GameTable gameTable = new GameTable();
-            gameTable.setId("Game"+ Math.random());
-            gameTable.setDateTime(LocalDateTime.now());
-            gameTable.setFirstPlayerBoard(playerBoards.getFirstPlayerBoard());
-            gameTable.setSecondPlayerBoard(playerBoards.getSecondPlayerBoard());
-
-            gameTableRepository.insert(gameTable);
         } else if (currentPlayer == Players.SECOND_PLAYER) {
             printTurnMessage(currentPlayer);
 
